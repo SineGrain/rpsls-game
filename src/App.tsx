@@ -1,25 +1,45 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ButtonType, GameButton } from './components/GameButton/GameButton';
+import { globalCss, styled } from './stitches.config';
+
+const globalStyles = globalCss({
+  '*': { fontFamily: "$main" },
+  'body': {
+    background: 'radial-gradient(134.34% 134.34% at 50% 0%, #1F3757 0%, #131537 100%)',
+    height: '100vh',
+    overflow: 'hidden'
+  }
+});
+
+const MainContainer = styled('div', {
+  display: 'flex',
+  alignContent: 'center',
+  justifyContent: 'center'
+})
+
+const ButtonContainer = styled('div', {
+  backgroundImage:  'url(/images/bg-pentagon.svg)',
+  width: 472,
+  height: 463,
+  backgroundRepeat: 'no-repeat',
+  backgroundPosition: 'center',
+  backgroundSize: 'contain'
+})
 
 function App() {
+  
+  globalStyles();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MainContainer>
+      <ButtonContainer>
+        <GameButton type={ButtonType.PAPER} />
+        <GameButton type={ButtonType.ROCK} />
+        <GameButton type={ButtonType.SCISSOR} />
+        <GameButton type={ButtonType.LIZARD} />
+        <GameButton type={ButtonType.SPOCK} />
+      </ButtonContainer>
+    </MainContainer>
   );
 }
 
