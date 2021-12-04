@@ -54,6 +54,23 @@ const Circle = styled('div', {
                 height: '95.56%',
                 top: 0,
                 left: 0
+            },
+        },
+        icon: {
+            rock: {
+                background: 'url(/images/icon-rock.svg)'
+            },
+            paper: {
+                background: 'url(/images/icon-paper.svg)'
+            },
+            scissor: {
+                background: 'url(/images/icon-scissor.svg)'
+            },
+            lizard: {
+                background: 'url(/images/icon-lizard.svg)'
+            },
+            spock: {
+                background: 'url(/images/icon-spock.svg)'
             }
         }
     }
