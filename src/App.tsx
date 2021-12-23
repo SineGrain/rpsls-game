@@ -38,7 +38,6 @@ function App() {
         <IconButton type="scissor" />
         <IconButton type="lizard" />
         <IconButton type="spock" />
-
       </ButtonContainer>
     </MainContainer>
   );

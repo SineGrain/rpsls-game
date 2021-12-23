@@ -10,7 +10,6 @@ const ButtonContainer = styled('div', {
     justifyContent: 'center'
 });
 
-
 const InnerCircle = styled('div', {
     //shadow
     position: 'absolute',
