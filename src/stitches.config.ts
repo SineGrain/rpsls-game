@@ -27,4 +27,9 @@ export const {
         mobile: '(min-width: 375px)',
         desktop: '(min-width: 1366px)'
     },
+    utils: {
+        icon: (iconName: string) => ({
+            backgorundImage: `url(/image/icon-${iconName})`
+        })
+    }
 });
