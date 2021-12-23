@@ -1,5 +1,5 @@
-import React from 'react';
-import { ButtonType, GameButton } from './components/GameButton/GameButton';
+import * as React from 'react';
+import { IconButton } from './components/GameButton/IconButton/IconButton';
 import { globalCss, styled } from './stitches.config';
 
 const globalStyles = globalCss({
@@ -33,11 +33,12 @@ function App() {
   return (
     <MainContainer>
       <ButtonContainer>
-        <GameButton type={ButtonType.PAPER} />
-        <GameButton type={ButtonType.ROCK} />
-        <GameButton type={ButtonType.SCISSOR} />
-        <GameButton type={ButtonType.LIZARD} />
-        <GameButton type={ButtonType.SPOCK} />
+        <IconButton type="rock" />
+        <IconButton type="paper" />
+        <IconButton type="scissor" />
+        <IconButton type="lizard" />
+        <IconButton type="spock" />
+
       </ButtonContainer>
     </MainContainer>
   );

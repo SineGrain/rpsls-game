@@ -10,103 +10,114 @@ const ButtonContainer = styled('div', {
     justifyContent: 'center'
 });
 
-const ButtonInnerContainer = styled('div', {
-    position: 'relative',
-    width: '76.76%',
-    height: '74.87%'
-});
 
-
-const Circle = styled('div', {
-    position:'absolute',
-    bottom: 0,
+const InnerCircle = styled('div', {
+    //shadow
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
     borderRadius: '100%',
-    variants: {
-        type: {
-            circle1: {
-                background: 'linear-gradient(0deg, #F3F3F3 0%, #DADADA 98.34%)', 
-                width: '100%',               
-                height: '94.74%',
-            },
-            circle2: {
-                background: '#BABFD4',
-                width: '100%',
-                height: '100%',
-            },
-            circle3: {
-                background: '#4664F4',
-                width: '100%',
-                height: '95.56%',
-                top: 0,
-                left: 0
-            },
-            circle4: {
-                background: '#2A45C2',
-                width: '100%',
-                height: '100%',
-                top: 0,
-                left: 0,
-                boxShadow: '0px 3px 3px rgba(0, 0, 0, 0.196706)'
-            },
-            transparent: {
-                background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.0966455) 0%, rgba(255, 255, 255, 0.0001) 100%)',
-                width: '100%',
-                height: '95.56%',
-                top: 0,
-                left: 0
-            },
-        },
-        icon: {
-            rock: {
-                background: 'url(/images/icon-rock.svg)'
-            },
-            paper: {
-                background: 'url(/images/icon-paper.svg)'
-            },
-            scissor: {
-                background: 'url(/images/icon-scissor.svg)'
-            },
-            lizard: {
-                background: 'url(/images/icon-lizard.svg)'
-            },
-            spock: {
-                background: 'url(/images/icon-spock.svg)'
-            }
-        }
+    background: '#BABFD4',
+    width: '76.76%',
+    height: '74.87%',
+    "&:after": {
+        //center light circle
+        content: " ",
+        background: 'linear-gradient(0deg, rgb(243, 243, 243) 0%, rgb(218, 218, 218) 98.34%)',
+        width: '100%',
+        height: '94.74%',
+        position: 'absolute',
+        borderRadius: '100%',
+        top: '5.26%'
+    },
+});
+
+const OuterCircle = styled('div', {
+    "&:before": {
+        //back shadow
+        content: ' ',
+        borderRadius: '100%',
+        background: '#4664F4',
+        width: '100%',
+        height: '95.56%',
+        top: 0,
+        left: 0,
+        position: 'absolute'
+    },
+    //solid circle
+    background: '#2A45C2',
+    width: '100%',
+    height: '100%',
+    top: 0,
+    left: 0,
+    boxShadow: '0px 3px 3px rgba(0, 0, 0, 0.196706)',
+    position: 'absolute',
+    borderRadius: '100%',
+    "&:after": {
+        //transparent layer
+        borderRadius: '100%',
+        content: ' ',
+        background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.0966455) 0%, rgba(255, 255, 255, 0.0001) 100%)',
+        width: '100%',
+        height: '95.56%',
+        top: 0,
+        left: 0,
+        position: 'absolute'
     }
-    
+
 });
 
 
-interface IIconButtonProps {
-    secondaryColor?: string
-    primaryColor?: string
-    // iconComponent: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
-    iconComponent: React.ReactNode
-}
 
-export const IconButton: React.FunctionComponent<IIconButtonProps>  = ({
-    secondaryColor,
-    primaryColor,
-    iconComponent
-}) => {
+const BaseCirclesButtons : React.FunctionComponent  = (props) => {
     return (
-        <ButtonContainer>
-            <Circle 
-                type="circle4" 
-                css={{ background: primaryColor }} 
-            />
-            <Circle 
-                type="circle3" 
-                css={{ background: secondaryColor }} 
-                />
-            <ButtonInnerContainer>
-                <Circle type="circle2" />
-                <Circle type="circle1" />
-                {iconComponent}
-                
-            </ButtonInnerContainer>
-            <Circle type="transparent" />
+        <ButtonContainer {...props}>
+            <OuterCircle />
+            <InnerCircle />
         </ButtonContainer>
     )
 }
+BaseCirclesButtons.toString = () => '.main-circles-container';
+
+
+const outerColors = (shadow: string, body: string, iconName: string, options?: {
+    svgXPosition?: string
+} ) => ({
+    [`& > ${OuterCircle}`]: {
+        backgroundColor: body,
+        "&:before": {
+            backgroundColor: shadow
+        }
+    } as React.CSSProperties
+    ,
+    [`& > ${InnerCircle}:before`]: {
+        backgroundImage: `url(/images/icon-${iconName}.svg)`,
+        backgroundPositionX: options?.svgXPosition || ''
+    } as React.CSSProperties
+})
+
+export const IconButton = styled(BaseCirclesButtons, {
+    [`& > ${InnerCircle}:before`]: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        content: ' ',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        backgroundSize: '50%',
+        zIndex: 1,
+    },
+    variants: {
+        type: {
+            rock:       outerColors('#DB2E4D', '#9D1634', 'rock'),
+            paper:      outerColors('#4664F4', '#2A45C2', 'paper'),
+            scissor:    outerColors('#EB9F0E', '#C76C1B', 'scissors'),
+            lizard:     outerColors('#834EE3', '#5F37A8', 'lizard'),
+            spock:      outerColors('#3FB7CD', '#2D8DAB', 'spock', {svgXPosition: '60%'}),
+              
+        }
+    }
+})
