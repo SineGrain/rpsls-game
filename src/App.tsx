@@ -1,5 +1,8 @@
-import React from 'react';
-import { ButtonType, GameButton } from './components/GameButton/GameButton';
+import * as React from 'react';
+import { Header } from './components/Header/Header';
+import { ModalProvider } from './components/ModalProvider/ModalProvider';
+import { Pentagon } from './components/Pentagon/Pentagon';
+import { RulesButton } from './components/RulesButton/RulesButton';
 import { globalCss, styled } from './stitches.config';
 
 const globalStyles = globalCss({
@@ -12,18 +15,14 @@ const globalStyles = globalCss({
 });
 
 const MainContainer = styled('div', {
-  display: 'flex',
-  alignContent: 'center',
-  justifyContent: 'center'
+  display: 'grid',
+  gridTemplateRows: '180px 1fr 30px'
 })
 
-const ButtonContainer = styled('div', {
-  backgroundImage:  'url(/images/bg-pentagon.svg)',
-  width: 472,
-  height: 463,
-  backgroundRepeat: 'no-repeat',
-  backgroundPosition: 'center',
-  backgroundSize: 'contain'
+const PentagonContainer = styled('div', {
+  width: '100%',
+  display:'flex',
+  justifyContent: 'center'
 })
 
 function App() {
@@ -31,15 +30,16 @@ function App() {
   globalStyles();
 
   return (
-    <MainContainer>
-      <ButtonContainer>
-        <GameButton type={ButtonType.PAPER} />
-        <GameButton type={ButtonType.ROCK} />
-        <GameButton type={ButtonType.SCISSOR} />
-        <GameButton type={ButtonType.LIZARD} />
-        <GameButton type={ButtonType.SPOCK} />
-      </ButtonContainer>
-    </MainContainer>
+    <ModalProvider>
+      <MainContainer>
+        <Header />
+        <PentagonContainer>
+          <Pentagon />
+        </PentagonContainer>
+        <RulesButton />
+
+      </MainContainer>
+    </ModalProvider>
   );
 }
 
