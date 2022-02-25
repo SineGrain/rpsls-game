@@ -7,7 +7,8 @@ const ButtonContainer = styled('div', {
     height: 203,
     display:'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    cursor: 'pointer'
 });
 
 const InnerCircle = styled('div', {

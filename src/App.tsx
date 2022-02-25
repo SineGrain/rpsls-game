@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { AppStateProvider } from './components/AppState/AppState';
 import { Header } from './components/Header/Header';
 import { ModalProvider } from './components/ModalProvider/ModalProvider';
 import { Pentagon } from './components/Pentagon/Pentagon';
@@ -16,7 +17,8 @@ const globalStyles = globalCss({
 
 const MainContainer = styled('div', {
   display: 'grid',
-  gridTemplateRows: '180px 1fr 30px'
+  gridTemplateRows: '190px 1fr auto',
+  padding: '16px'
 })
 
 const PentagonContainer = styled('div', {
@@ -25,21 +27,32 @@ const PentagonContainer = styled('div', {
   justifyContent: 'center'
 })
 
+const FooterBox = styled('div', {
+  display: 'flex',
+  justifyContent: 'center',
+  "@desktop": {
+    justifyContent: 'end'
+  },
+})
+
 function App() {
   
   globalStyles();
 
   return (
-    <ModalProvider>
-      <MainContainer>
-        <Header />
-        <PentagonContainer>
-          <Pentagon />
-        </PentagonContainer>
-        <RulesButton />
-
-      </MainContainer>
-    </ModalProvider>
+    <AppStateProvider>
+      <ModalProvider>
+        <MainContainer>
+          <Header />
+          <PentagonContainer>
+            <Pentagon />
+          </PentagonContainer>
+          <FooterBox>
+            <RulesButton />
+          </FooterBox>
+        </MainContainer>
+      </ModalProvider>
+    </AppStateProvider>
   );
 }
 

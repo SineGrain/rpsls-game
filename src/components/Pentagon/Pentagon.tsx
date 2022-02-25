@@ -1,6 +1,8 @@
+import * as React from 'react'
 import { styled } from '@stitches/react'
-import * as react from 'react'
 import { IconButton } from '../IconButton/IconButton'
+import { useAppStateContext } from '../AppState/useAppStateContext'
+import { GameItems } from '../AppState/AppState'
 
 
 const iconWHCalc = (widthPercent: number) => ({
@@ -9,9 +11,9 @@ const iconWHCalc = (widthPercent: number) => ({
 })
 
 const ButtonContainer = styled('div', {
-    backgroundImage: 'url(/images/bg-pentagon.svg)',
     width: 472,
     height: 463,
+    backgroundImage: 'url(/images/bg-pentagon.svg)',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
     backgroundSize: '80%',
@@ -26,7 +28,7 @@ const ButtonContainer = styled('div', {
         // left: '50%',
         // top: '50%',
         transform: 'translate(-50%, -50%)'
-    }
+    },
 })
 
 
@@ -36,38 +38,60 @@ const ButtonContainer = styled('div', {
 //     transform: 'translate(70%, -75%)'
 // }} 
 export const Pentagon = () => {
+    const { setUserSelection } = useAppStateContext()
+
     return (
         <ButtonContainer>
-            <IconButton type="paper" css={{
-                gridRowStart: 2,
-                gridColumnStart: 3,
-                top: '25%',
-                left: '50%'
-            }} />
-            <IconButton type="rock" css={{
-                gridRowStart: 3,
-                gridColumnStart: 3,
-                top: '50%',
-                left: '30%'
-            }}  />
-            <IconButton type="scissor" css={{
-                gridRowStart: 1,
-                gridColumnStart: 2,
-                top: '50%',
-                left: '50%'
-            }} />
-            <IconButton type="lizard" css={{
-                gridRowStart: 3,
-                gridColumnStart: 1,
-                left: '70%',
-                top: '50%'
-            }} />
-            <IconButton type="spock" css={{
-                gridRowStart: 2,
-                gridColumnStart: 1,
-                top: '25%',
-                left: '50%'
-            }} />
+            <IconButton
+                type="paper"
+                /** @ts-ignore */
+                onClick={() => setUserSelection(GameItems.PAPER)}
+                css={{
+                    gridRowStart: 2,
+                    gridColumnStart: 3,
+                    top: '25%',
+                    left: '50%'
+                }} />
+            <IconButton
+                type="rock"
+                /** @ts-ignore */
+                onClick={() => setUserSelection(GameItems.ROCK)}
+                css={{
+                    gridRowStart: 3,
+                    gridColumnStart: 3,
+                    top: '50%',
+                    left: '30%'
+                }} />
+            <IconButton
+                type="scissor"
+                /** @ts-ignore */
+                onClick={() => setUserSelection(GameItems.SCISSOR)}
+                css={{
+                    gridRowStart: 1,
+                    gridColumnStart: 2,
+                    top: '50%',
+                    left: '50%'
+                }} />
+            <IconButton
+                type="lizard"
+                /** @ts-ignore */
+                onClick={() => setUserSelection(GameItems.LIZARD)}
+                css={{
+                    gridRowStart: 3,
+                    gridColumnStart: 1,
+                    left: '70%',
+                    top: '50%'
+                }} />
+            <IconButton
+                type="spock"
+                /** @ts-ignore */
+                onClick={() => setUserSelection(GameItems.SPOCK)}
+                css={{
+                    gridRowStart: 2,
+                    gridColumnStart: 1,
+                    top: '25%',
+                    left: '50%'
+                }} />
         </ButtonContainer>
     )
 }

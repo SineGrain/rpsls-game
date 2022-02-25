@@ -24,7 +24,6 @@ export const {
         },
     },
     media: {
-        mobile: '(min-width: 375px)',
-        desktop: '(min-width: 1366px)'
-    },
+        desktop: '(min-width: 640px)',
+    }
 });
