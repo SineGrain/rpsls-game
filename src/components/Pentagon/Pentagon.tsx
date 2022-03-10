@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { styled } from '@stitches/react'
+import { styled } from '../../stitches.config';
 import { IconButton } from '../IconButton/IconButton'
 import { useAppStateContext } from '../AppState/useAppStateContext'
 import { GameItems } from '../AppState/AppState'
@@ -11,8 +11,6 @@ const iconWHCalc = (widthPercent: number) => ({
 })
 
 const ButtonContainer = styled('div', {
-    width: 472,
-    height: 463,
     backgroundImage: 'url(/images/bg-pentagon.svg)',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
@@ -29,6 +27,13 @@ const ButtonContainer = styled('div', {
         // top: '50%',
         transform: 'translate(-50%, -50%)'
     },
+    width: 472*0.7,
+    height: 463*0.7,
+    '@desktop': {
+        width: 472,
+        height: 463
+    }
+    
 })
 
 
@@ -44,7 +49,6 @@ export const Pentagon = () => {
         <ButtonContainer>
             <IconButton
                 type="paper"
-                /** @ts-ignore */
                 onClick={() => setUserSelection(GameItems.PAPER)}
                 css={{
                     gridRowStart: 2,
@@ -54,7 +58,6 @@ export const Pentagon = () => {
                 }} />
             <IconButton
                 type="rock"
-                /** @ts-ignore */
                 onClick={() => setUserSelection(GameItems.ROCK)}
                 css={{
                     gridRowStart: 3,
@@ -64,7 +67,6 @@ export const Pentagon = () => {
                 }} />
             <IconButton
                 type="scissor"
-                /** @ts-ignore */
                 onClick={() => setUserSelection(GameItems.SCISSOR)}
                 css={{
                     gridRowStart: 1,
@@ -74,7 +76,6 @@ export const Pentagon = () => {
                 }} />
             <IconButton
                 type="lizard"
-                /** @ts-ignore */
                 onClick={() => setUserSelection(GameItems.LIZARD)}
                 css={{
                     gridRowStart: 3,
@@ -84,7 +85,6 @@ export const Pentagon = () => {
                 }} />
             <IconButton
                 type="spock"
-                /** @ts-ignore */
                 onClick={() => setUserSelection(GameItems.SPOCK)}
                 css={{
                     gridRowStart: 2,

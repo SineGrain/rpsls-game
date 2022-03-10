@@ -1,3 +1,4 @@
+import { ComponentProps } from '@stitches/react';
 import React from 'react'
 import { css, styled } from '../../stitches.config';
 
@@ -67,8 +68,8 @@ const OuterCircle = styled('div', {
     }
 })
 
-
-const BaseIconButton: React.FunctionComponent  = (prop) => {
+//https://github.com/modulz/stitches/discussions/213
+const BaseIconButton: React.FC<ComponentProps<typeof ButtonContainer>>  = (prop) => {
     return (
         <ButtonContainer {...prop}>
             <OuterCircle />
