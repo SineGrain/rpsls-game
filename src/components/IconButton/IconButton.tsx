@@ -105,6 +105,16 @@ export const IconButton = styled(BaseIconButton, {
             paper: variantStyleGen({shadowColor:'#2A45C2', solidColor:'#4664F4',iconName: 'paper'}),
             lizard: variantStyleGen({shadowColor:'#5F37A8', solidColor:'#834EE3',iconName: 'lizard'}),
             spock: variantStyleGen({shadowColor:'#2D8DAB', solidColor:'#3FB7CD',iconName: 'spock'}),
+        },
+        size: {
+            small: {
+                width: 198,
+                height: 203,
+            },
+            medium: {
+                width: 292,
+                height: 300
+            }
         }
     }
 })

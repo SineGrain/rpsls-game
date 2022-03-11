@@ -27,8 +27,8 @@ const ButtonContainer = styled('div', {
         // top: '50%',
         transform: 'translate(-50%, -50%)'
     },
-    width: 472*0.7,
-    height: 463*0.7,
+    width: 472*0.75,
+    height: 463*0.75,
     '@desktop': {
         width: 472,
         height: 463
